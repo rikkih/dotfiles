@@ -26,7 +26,9 @@ ZSH_THEME_RANDOM_IGNORED=(
   "emotty"
   "evan"
   "fwalch"
+  "gallifrey"
   "garyblessington"
+  "gozilla"
   "humza"
   "imajes"
   "jtriley"
@@ -36,6 +38,7 @@ ZSH_THEME_RANDOM_IGNORED=(
   "philips"
   "refined"
   "Soliah"
+  "sporty_256"
   "strug"
   "sunaku"
   "takashiyoshida"
@@ -104,16 +107,18 @@ ZSH_THEME_RANDOM_IGNORED=(
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git
-	 zsh-autosuggestions
-	 aws
-	 docker
-	 dotenv 
-	 history
-	 pyenv
-	 python
-	 terraform
-	 tmux
+plugins=(
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  aws
+  docker
+  dotenv
+  history
+  pyenv
+  python
+  terraform
+  tmux
 )
 
 ZSH_TMUX_AUTOSTART=true
