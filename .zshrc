@@ -18,33 +18,34 @@ source $HOME/.aliases
 ZSH_THEME="random"
 
 ZSH_THEME_RANDOM_IGNORED=(
-  "adben"
-  "arrow"
-  "avit"
-  "dieter"
-  "edvardm"
-  "emotty"
-  "evan"
-  "fwalch"
-  "gallifrey"
-  "garyblessington"
-  "gozilla"
-  "humza"
-  "imajes"
-  "jtriley"
-  "kardan"
-  "kolo"
-  "lambda"
-  "philips"
-  "refined"
-  "Soliah"
-  "sporty_256"
-  "strug"
-  "sunaku"
-  "takashiyoshida"
-  "terminalparty"
-  "wezm"
-  "wezm+"
+    "adben"
+    "arrow"
+    "avit"
+    "dieter"
+    "edvardm"
+    "emotty"
+    "evan"
+    "fwalch"
+    "gallifrey"
+    "garyblessington"
+    "gozilla"
+    "humza"
+    "imajes"
+    "jtriley"
+    "kardan"
+    "kolo"
+    "lambda"
+    "mgutz"
+    "philips"
+    "refined"
+    "Soliah"
+    "sporty_256"
+    "strug"
+    "sunaku"
+    "takashiyoshida"
+    "terminalparty"
+    "wezm"
+    "wezm+"
 )
 
 # Set list of themes to pick from when loading at random
@@ -108,17 +109,17 @@ ZSH_THEME_RANDOM_IGNORED=(
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  aws
-  docker
-  dotenv
-  history
-  pyenv
-  python
-  terraform
-  tmux
+    git
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    aws
+    docker
+    dotenv
+    history
+    pyenv
+    python
+    terraform
+    tmux
 )
 
 ZSH_TMUX_AUTOSTART=true
@@ -156,3 +157,18 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+complete -C '/usr/local/bin/aws_completer' aws
+
+export PATH=$PATH:$HOME/bin
+
+##### FZF Config
+# --files: List files that would be searched but do not search
+# --no-ignore: Do not respect .gitignore, etc...
+# --hidden: Search hidden files and folders
+# --follow: Follow symlinks
+# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
