@@ -28,6 +28,7 @@ ZSH_THEME_RANDOM_IGNORED=(
     "fwalch"
     "gallifrey"
     "garyblessington"
+    "geoffgarside"
     "gozilla"
     "humza"
     "imajes"
@@ -35,7 +36,9 @@ ZSH_THEME_RANDOM_IGNORED=(
     "kardan"
     "kolo"
     "lambda"
+    "macovsky"
     "mgutz"
+    "minimal"
     "philips"
     "refined"
     "Soliah"
@@ -46,6 +49,7 @@ ZSH_THEME_RANDOM_IGNORED=(
     "terminalparty"
     "wezm"
     "wezm+"
+    "wuffers"
 )
 
 # Set list of themes to pick from when loading at random
@@ -155,6 +159,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias treea="tree -a -I '.git|.mypy_cache'"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
