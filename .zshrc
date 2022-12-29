@@ -1,55 +1,104 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/home/rikki/.pyenv/bin/pyenv:$PATH
+export PATH=$HOME/.pyenv/bin/pyenv:$PATH
+export PATH=$PATH:$HOME/.local/bin
+export PYENV_ROOT="$HOME/.pyenv"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
+# GoLang bits
+export PATH=$PATH:/usr/local/go/bin
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/rikki/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Source any config files
 source $HOME/.aliases
-
-# Pyenv config
-# echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="random"
-
 ZSH_THEME_RANDOM_IGNORED=(
     "adben"
+    "agnoster"
+    "apple"
     "arrow"
     "avit"
+    "awesomepanda"
+    "bureau"
+    "clean"
+    "cloud"
+    "cypher"
+    "daveverwer"
     "dieter"
+    "dogenpunk"
+    "dstufft"
     "edvardm"
     "emotty"
     "evan"
+    "example"
+    "fishy"
+    "fox"
+    "frisk"
+    "frontcube"
+    "funky"
     "fwalch"
     "gallifrey"
+    "gallois"
     "garyblessington"
     "geoffgarside"
     "gozilla"
     "humza"
     "imajes"
+    "jbergantine"
+    "jnrowe"
+    "josh"
+    "jreese"
     "jtriley"
+    "junkfood"
     "kardan"
+    "kennethreitz"
     "kolo"
+    "kphoen"
     "lambda"
     "macovsky"
+    "macovsky-ruby"
     "mgutz"
+    "mikeh"
+    "miloshadzic"
     "minimal"
+    "mlh"
+    "mortalscumbag"
+    "nebirhos"
+    "norm"
+    "peepcode"
     "philips"
+    "pmcgee"
     "refined"
+    "risto"
+    "rixius"
+    "robbyrussell"
+    "sammy"
+    "simple"
     "Soliah"
+    "sonicradish"
+    "sorin"
     "sporty_256"
+    "steeef"
     "strug"
     "sunaku"
+    "sunrise"
+    "superjarin"
     "takashiyoshida"
     "terminalparty"
+    "theunraveler"
+    "wedisagree"
     "wezm"
     "wezm+"
     "wuffers"
+    "xiong-chiamiov"
+    "zhann"
 )
 
 # Set list of themes to pick from when loading at random
@@ -113,17 +162,20 @@ ZSH_THEME_RANDOM_IGNORED=(
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git
-    zsh-autosuggestions
-    zsh-syntax-highlighting
     aws
+    colored-man-pages
     docker
     dotenv
+    git
     history
+    kubectl
+    poetry
     pyenv
     python
     terraform
     tmux
+    zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
 ZSH_TMUX_AUTOSTART=true
@@ -163,17 +215,19 @@ alias treea="tree -a -I '.git|.mypy_cache'"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!{.git,node_modules,_pycache_}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="rg --sort-files --files --null 2> /dev/null $HOME/workspace/ | xargs -0 dirname | uniq"
+
+# Bat for FZF (MAKE SURE BAT IS INSTALLED ON SYSTEM, otherwise this won't work)
+export BAT_THEME=gruvbox-dark
+
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 complete -C '/usr/local/bin/aws_completer' aws
 
 export PATH=$PATH:$HOME/bin
 
-##### FZF Config
-# --files: List files that would be searched but do not search
-# --no-ignore: Do not respect .gitignore, etc...
-# --hidden: Search hidden files and folders
-# --follow: Follow symlinks
-# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

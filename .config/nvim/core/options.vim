@@ -27,7 +27,7 @@ set wildignore+=*.DS_Store
 set wildignore+=*.aux,*.bbl,*.blg,*.brf,*.fls,*.fdb_latexmk,*.synctex.gz,*.xdv
 set wildignorecase  " ignore file and dir name cases in cmd-completion
 
-" General tab settings
+" General tab and indentation settings
 set tabstop=4       " number of visual spaces per TAB
 set softtabstop=4   " number of spaces in tab when editing
 set shiftwidth=4    " number of spaces to use for autoindent
@@ -52,7 +52,10 @@ set linebreak
 set showbreak=↪
 
 " Minimum lines to keep above and below cursor when scrolling
-set scrolloff=4
+set scrolloff=2
+
+" Track cursor line
+set cursorline
 
 " Disable showing current mode on command line since statusline plugins can show it.
 set noshowmode
@@ -76,8 +79,7 @@ set completeopt-=preview  " Disable the preview window
 
 set pumheight=10  " Maximum number of items to show in popup menu
 set pumblend=10  " pseudo transparency for completion menu
-
-set winblend=5  " pseudo transparency for floating window
+set winblend=10  " pseudo transparency for floating window
 
 " Insert mode key word completion setting
 set complete+=kspell complete-=w complete-=b complete-=u complete-=t
@@ -127,3 +129,26 @@ set diffopt+=vertical  " show diff in vertical position
 set diffopt+=filler  " show filler for deleted lines
 set diffopt+=context:3  " context for diff
 set diffopt+=internal,indent-heuristic,algorithm:histogram
+
+" Mappings for quick editing files from the current directory
+map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
+map ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
+map ,s :split <C-R>=expand("%:p:h") . "/" <CR>
+map ,v :vsplit <C-R>=expand("%:p:h") . "/" <CR>
+
+inoremap <expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
+inoremap <expr> <up> coc#pum#visible() ? coc#pum#prev(1) : "\<up>"
+inoremap <expr> <down> coc#pum#visible() ? coc#pum#next(1) : "\<down>"
+
+"-- FOLDING --  
+set foldmethod=syntax "syntax highlighting items specify folds  
+set foldcolumn=1 "defines 1 col at window left, to indicate folding  
+let javaScript_fold=1 "activate folding by JS syntax  
+set foldlevelstart=99 "start file with all folds opened
+
+" Backspace crap
+set backspace=indent,start,eol,nostop
+
+" Filetype detection
+syntax on
+filetype plugin indent on
